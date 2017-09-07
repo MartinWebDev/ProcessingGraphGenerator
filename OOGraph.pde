@@ -74,22 +74,16 @@ void draw() {
     
     // Draw bezier line between all points (exclude the end one as there is nothing to connect to)
     for (int i = 0; i < graphPoints.length - 1; i++) {
-        // Start X
+        // Start
         int startX = floor((graphPointSpacing * i) + graphPointSpacing);
-        
-        // Start Y
         int startY = graphValues[i];
         
-        // End X
+        // End
         int endX = floor((graphPointSpacing * (i + 1)) + graphPointSpacing);
-        
-        // End Y
         int endY = graphValues[i + 1];
         
-        // Control point 1
+        // Control points
         PVector c1 = graphPoints[i].controlPointNext;
-        
-        // Control point 2
         PVector c2 = graphPoints[i + 1].controlPointPrev;
         
         // Draw line
