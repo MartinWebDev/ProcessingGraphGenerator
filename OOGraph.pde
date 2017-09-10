@@ -27,19 +27,30 @@ void setup() {
 void newGraphValues() {
     for (int i = 0; i < graphValues.length; i++) {
         graphValues[i] = floor(random(20, 300));
-        
+    }
+    
+    for (int i = 0; i < graphValues.length; i++) {
         // Get current, previous, and next
         java.lang.Integer curr = graphValues[i];
         java.lang.Integer prev = i == 0 ? null : graphValues[i - 1];
         java.lang.Integer next = i == graphValues.length - 1 ? null : graphValues[i + 1];
         
-        graphPoints[i] = new GraphPoint(curr, prev, next);
+        // Insert x location of each point
+        java.lang.Integer currX = floor((graphPointSpacing * i) + graphPointSpacing);
+        java.lang.Integer prevX = i == 0 ? null : floor((graphPointSpacing * (i - 1)) + graphPointSpacing);
+        java.lang.Integer nextX = i == graphValues.length - 1 ? null : floor((graphPointSpacing * (i + 1)) + graphPointSpacing);
+        
+        graphPoints[i] = new GraphPoint(curr, prev, next, currX, prevX, nextX);
     }
 }
 
 void mouseClicked() {
     //addGraphNoise = !addGraphNoise;
-    newGraphValues();
+    //newGraphValues();
+    
+    for (int i = 0; i < graphValues.length; i++) {
+        graphPoints[i].hidePoints = !graphPoints[i].hidePoints;
+    }
 }
 
 void draw() {
